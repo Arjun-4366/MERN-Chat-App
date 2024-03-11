@@ -5,11 +5,13 @@ import React from "react";
 import "./MainStyles.css";
 import RecieveMessage from "./RecieveMessage";
 import SendMessage from "./SendMessage";
+import { useSelector } from "react-redux";
 
 function ChatArea() {
+  const darkMode = useSelector((state)=>state.darkModeKey)
   return (
     <div className="chatArea-container">
-      <div className="chatArea-header">
+      <div className={"chatArea-header" + (darkMode ? ' dark' : "")}>
         <div className="chat-header-status">
           <p className="chat-icon">P</p>
           <div>
@@ -18,7 +20,7 @@ function ChatArea() {
           </div>
         </div>
         <div className="chatArea-delete-btn">
-          <IconButton>
+          <IconButton className={darkMode ? ' dark' : ""}>
             <DeleteIcon />
           </IconButton>
         </div>
@@ -35,13 +37,13 @@ function ChatArea() {
         <RecieveMessage />
         <SendMessage />
       </div>
-      <div className="chatArea-text">
+      <div className={"chatArea-text"+ (darkMode ? ' dark' :"")}>
         <input
           type="text"
-          className="input-message"
+          className={"input-message" + (darkMode ? ' dark' :"")}
           placeholder="Type a message here"
         />
-        <IconButton>
+        <IconButton  className={'send-btn'+(darkMode ? ' dark' :"")}>
           <SendIcon />
         </IconButton>
       </div>
