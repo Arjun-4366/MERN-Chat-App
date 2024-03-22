@@ -14,11 +14,7 @@ function MainContainer() {
     <div className={"main-container"+(darkMode ? ' bg-dark' : "")}>
       <SideBar />
        <Outlet />
-      {/* <UserGroups/> */}
-      {/* <Login/> */}
-      {/* <CreateGroup/> */}
-      {/* <ChatHome/> */}
-      {/* <ChatArea /> */}
+    
     </div>
   );
 }

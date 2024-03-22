@@ -9,18 +9,20 @@ import UserGroups from "./Components/UserGroups";
 import CreateGroup from "./Components/CreateGroup";
 
 import AllUsers from "./Components/AllUsers";
+import Register from "./Components/Register";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="app" element={<MainContainer />}>
           <Route path="welcome" element={<ChatHome />} />
           <Route path="chat" element={<ChatArea />} />
           <Route path="createGroup" element={<CreateGroup />} />
-          <Route path="users" element={<UserGroups />} />
-          <Route path="groups" element={<AllUsers />} />
+          <Route path="users" element={<AllUsers />} />
+          <Route path="groups" element={<UserGroups />} />
         </Route>
       </Routes>
     </div>

@@ -12,10 +12,17 @@ import { toggleDarkTheme } from "../features/themeSlice";
 import ChatIcon from "@mui/icons-material/Chat";
 import GroupsIcon from "@mui/icons-material/Groups";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-
+import LogoutIcon from '@mui/icons-material/Logout';
 function SideBar() {
+ 
   const dispatch = useDispatch();
   const darkMode = useSelector((state) => state.darkModeKey);
+  let navigate = useNavigate();
+  const logoutHandler = () =>{
+    localStorage.removeItem('userDetails')
+    navigate('/')
+
+  }
 
   const [chats, setChats] = useState([
     {
@@ -39,7 +46,7 @@ function SideBar() {
       timestamp: "today",
     },
   ]);
-  let navigate = useNavigate();
+  
   return (
     <div className={"sideBar" + (darkMode ? " bg-dark" : "")}>
       <div className={"sideBar-header" + (darkMode ? " dark" : "")}>
@@ -53,6 +60,7 @@ function SideBar() {
           <IconButton
             className={darkMode ? " dark" : ""}
             onClick={() => {
+
               navigate("users");
             }}>
             <ChatIcon />
@@ -78,6 +86,9 @@ function SideBar() {
             }}>
             {darkMode && <DarkModeIcon />}
             {!darkMode && <LightModeIcon />}
+          </IconButton>
+          <IconButton onClick={logoutHandler}  className={darkMode ? " dark" : ""}>
+            <LogoutIcon/>
           </IconButton>
         </div>
       </div>

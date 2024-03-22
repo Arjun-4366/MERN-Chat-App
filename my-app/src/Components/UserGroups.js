@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import React from "react";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+import GroupsIcon from '@mui/icons-material/Groups';
 import "./MainStyles.css";
 import SearchIcon from "@mui/icons-material/Search";
 import UserGroupList from "./UserGroupList";
@@ -14,10 +14,10 @@ function UserGroups() {
       <div className={"chatArea-header" + (darkMode ? ' dark' : "")}>
         <div className="chat-header-status">
           <p className="chat-icon">
-            <ChatBubbleIcon />
-          </p>
-          <div>
-            <p className="chat-name">Online users</p>
+            <GroupsIcon />
+            </p>
+            <div>
+            <p className="chat-name">Available groups</p>
           </div>
         </div>
       </div>

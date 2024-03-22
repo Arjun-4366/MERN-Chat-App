@@ -7,8 +7,8 @@ function UserGroupList() {
   return (
     
       <div className={"sideBar-chat-container" + (darkMode ? ' dark' : "")}>
-        <p className="chat-icon">P</p>
-        <p className="chat-name">Person</p>
+        <p className="chat-icon">G</p>
+        <p className="chat-name">groups</p>
       </div>
     
   );
