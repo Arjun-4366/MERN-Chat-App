@@ -20,7 +20,7 @@ function Login() {
     config
     )
     localStorage.setItem('userDetails',JSON.stringify(response))
-    console.log(response)
+    console.log(response.data)
     navigate('/app/welcome')
     }
     catch(error){
@@ -41,7 +41,7 @@ function Login() {
       <div className="login-box">
         <h4 className="text-success">Login With Your Username and Password</h4>
         <TextField id="outlined-basic" label="Username" variant="outlined" onChange={changeHandler} name="userName"/>
-        <TextField id="outlined-basic" label="Password" variant="outlined" onChange={changeHandler} name="password"/>
+        <TextField id="outlined-basic" label="Password" variant="outlined" onChange={changeHandler} name="password" type="password"/>
         <Button variant="contained" onClick={loginHandler}>Login</Button>
         <h4 className="text-success">Doesn't Have any account ? <span onClick={()=>{
           navigate('register')

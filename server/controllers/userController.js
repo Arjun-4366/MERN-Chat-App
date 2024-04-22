@@ -1,7 +1,8 @@
-const express = require('express')
+
 const userModel = require('../models/userSchema')
 const generateToken = require('../config/token')
 const bcrypt = require('bcrypt')
+
 
 
 const securePassword = async(password)=>{
@@ -23,12 +24,16 @@ const loginVerify = async(req,res)=>{
     }
     else{
         const passwordCheck = await bcrypt.compare(password,userData.password)
+         userData.status = 'online'
+         await userData.save()
         if(passwordCheck){
             res.status(201).json({
                 _id:userData._id,
                 userName:userData.userName,
                 email:userData.email,
-                token:userData.token
+                token:userData.token,
+                status:userData.status,
+                password:userData.password
             })
         }
         else{
@@ -82,7 +87,9 @@ const register = async(req,res)=>{
                     _id:userData._id,
                     userName:userData.userName, 
                     email:userData.email,
+                    isOnline:true,
                     token:generateToken(userData._id),
+                    password:userData.password
                     
                 })
                 userData.token = generateToken(userData._id)
@@ -103,6 +110,34 @@ const register = async(req,res)=>{
     }
     }
 
+
+      const updateUser = async(req,res)=>{
+        try{
+           const {userName,email,password,userId } = req.body
+            console.log('userName',userName)
+            console.log('email',email)
+            console.log('userID',userId)
+             const secPassword = await securePassword(password)
+            const userData = await userModel.findByIdAndUpdate({_id:userId},{userName:userName,email:email,password:secPassword})
+            await userData.save()
+            console.log('userData',userData)
+            res.status(201).json({
+                _id:userData._id,
+                userName:userData.userName, 
+                email:userData.email,
+                isOnline:true,
+                token:userData.token,
+                password:userData.password
+            })
+            
+        }
+        catch(error){
+            console.log(error.message)
+        }
+      }
+
+
+
     const fetchUsers = async(req,res)=>{
         try{
         const search = req.query.search ?{
@@ -120,9 +155,12 @@ const register = async(req,res)=>{
             console.log(error.message)
         }
     }
+ 
+    
 
 module.exports = {
     loginVerify,
     register,
-    fetchUsers
+    fetchUsers,
+    updateUser
 }

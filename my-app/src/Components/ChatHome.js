@@ -14,7 +14,10 @@ function ChatHome() {
     
     <div className='chat-home'>
       <img src={homeLogo} alt="" />
+      <h3 style={{color:'green'}}>Welcome {userData.data.userName}</h3>
+       <h3 style={{color:'grey'}}>Go to users and start messaging!!!!</h3>
     </div>
+    
   )
 }
 

@@ -9,6 +9,9 @@ Router.use(express.urlencoded({extended:true}))
 Router.post('/login',userController.loginVerify)
 Router.post('/register',userController.register)
 Router.get('/users',authenticate,userController.fetchUsers)
+Router.post('/profileUpdate',userController.updateUser)
+
+
 
 
 module.exports = Router 

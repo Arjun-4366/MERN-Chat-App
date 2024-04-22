@@ -15,7 +15,7 @@ function Register() {
           'Content-type':'application/json'
         }
       }
-      const response = await axios.post(
+      const response = await axios.post(  
         "http://localhost:3004/register",
          userData,
          config

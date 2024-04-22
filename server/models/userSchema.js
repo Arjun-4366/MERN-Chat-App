@@ -14,6 +14,11 @@ const userModel  = mongoose.Schema({
     },
     token:{
         type:String,
+    },
+    status:{
+        type:String,
+        required:true,
+        default:'Offline'
     }
     
 })
