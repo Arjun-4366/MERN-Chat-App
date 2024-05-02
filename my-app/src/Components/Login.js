@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Login() {
   const [userData,setUserData] = useState({userName:'',email:'',password:''})
+  const [message,setMessage] = useState()
+
   const  navigate = useNavigate()
   const loginHandler = async(e) =>{
     e.preventDefault()
@@ -19,9 +21,16 @@ function Login() {
     userData,
     config
     )
-    localStorage.setItem('userDetails',JSON.stringify(response))
-    console.log(response.data)
-    navigate('/app/welcome')
+      if(response.data.message){
+        console.log(response.data)
+        setMessage(response.data.message)
+      }
+      else{
+        localStorage.setItem('userDetails',JSON.stringify(response))
+        console.log(response.data)
+        navigate('/app/welcome')
+      }
+      
     }
     catch(error){
       console.log(error.message)
@@ -43,6 +52,7 @@ function Login() {
         <TextField id="outlined-basic" label="Username" variant="outlined" onChange={changeHandler} name="userName"/>
         <TextField id="outlined-basic" label="Password" variant="outlined" onChange={changeHandler} name="password" type="password"/>
         <Button variant="contained" onClick={loginHandler}>Login</Button>
+        <h3 className="text-warning">{message}</h3>
         <h4 className="text-success">Doesn't Have any account ? <span onClick={()=>{
           navigate('register')
         }} className="navigate-register">Create One</span>

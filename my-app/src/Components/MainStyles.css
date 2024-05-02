@@ -300,6 +300,9 @@
 .login-box p{
   color: red;
 }
+.text-warning{
+  color: red;
+}
 .sideBar img{
   width: 100%;
   height: 100%;
