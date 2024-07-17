@@ -2,10 +2,11 @@ import { IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import React, { useEffect, useRef, useState } from "react";
 import "./MainStyles.css";
-import  {useSelector} from "react-redux";
+import  {useDispatch, useSelector} from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client"
+import { reloadChatListHandler } from "../features/reloadSlice";
 
 
 const ENDPOINT = "http://localhost:3004";
@@ -21,6 +22,7 @@ function ChatArea() {
   const params = useParams()
   const [chat_id, chat_user] = params._id.split("&");
   const darkMode = useSelector((state) => state.darkModeKey);
+  const dispatch = useDispatch()
 
 
    
@@ -62,7 +64,7 @@ function ChatArea() {
         },
         config
       );
-
+      dispatch(reloadChatListHandler())
       socket.emit("new message", response.data);
       console.log("message fired");
 

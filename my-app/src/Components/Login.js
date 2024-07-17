@@ -5,11 +5,12 @@ import homeLogo from "../images/homeLogo.jpg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Login() {
-  const [userData,setUserData] = useState({userName:'',email:'',password:''})
+  const [userData,setUserData] = useState({userName:'',password:''})
   const [message,setMessage] = useState()
 
   const  navigate = useNavigate()
   const loginHandler = async(e) =>{
+    console.log('userdata',userData)
     e.preventDefault()
     try{
     const config = {
